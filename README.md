@@ -1,6 +1,9 @@
 # 7tq2z
+
 Project: Client-server system for solving Reversed Polish Notation (RPN)
+
 Assigned: May 29th (casual thinking started, with Internet browsing)
+
 Started: June 5th (office-time stated, with actual work)
 
 # Introduction to README.md
@@ -15,13 +18,13 @@ So below you will find my notes along with what is normally considered "publisha
 
 Candidates: Go, Python, Ruby
 
-Brief abalysis:
+Brief analysis:
 
 * Speed of operation:
 * Socket communication:
 * Spawning another process:
 
-## Architecture
+## Architecture overview
 
 As described in the assignment doc, with some additional bullet-points:
 1. End-point
@@ -37,11 +40,13 @@ As described in the assignment doc, with some additional bullet-points:
    * accepts input parameters (string? file? pipeline?)
    * returns output value / error value
 
-## Endpoint
+## Architectural details
 
-## Server
+### Endpoint
 
-## Worker
+### Server
+
+### Worker
 
 Perhaps returns to the server the same way endpoits do?
 
