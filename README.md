@@ -16,18 +16,19 @@ So below you will find my notes along with what is normally considered "publisha
 
 ## Language analysis
 
-Candidates: Go, Python, Ruby
+Candidates:
+* Go: fast(compilable) - worker?
+* Python
+* Ruby: interpreted slowly (not good for time-sensitive server probably) - user end-point?
 
-Brief analysis:
+To think: what has greater resource demands: server (work splitter) or worker (expression calculator)
 
-* Speed of operation:
-* Socket communication:
-* Spawning another process:
+Brief analysis. All possible easily: Socket communication, spawning a child process in background
 
 ## Architecture overview
 
 As described in the assignment doc, with some additional bullet-points:
-1. End-point
+1. Client (end-point)
    * stdin/stdout
    * feeds expression data (via API) using a specific format
    * uses sockets for communication
