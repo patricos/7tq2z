@@ -2,7 +2,8 @@
 # by Patryk Mazurkiewicz in Jun 2018
 #
 # OKAY: listens
-# todo: properly shut the socket disused
+# todo: sanitize the input (ascii, perhaps limited ser of characters)
+# OKAY: properly shut the socket disused
 # todo: parses input
 # todo: registers timings
 # todo: logs timings and necessary things
@@ -11,29 +12,30 @@
 # OKAY: sends results back
 
 import socket
+import thread
+import os       # os.getpid()
 
-serveripaddr = 'localhost'
+serveripaddr = 'localhost'                                        # = socket.gethostname()
 serveripport = 8088
 
-serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)   # creates socket object of AF_INET family and SOCK_STREAM type
-serversocket.bind((serveripaddr, serveripport))                    # configs the socket for a particular srv socket (address:port)
-serversocket.listen(7)                                         	   # opens up a socket for at most 7 connections
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)              # creates socket object of AF_INET family and SOCK_STREAM type
+s.bind((serveripaddr, serveripport))                               # configs the socket for a particular srv socket (address:port)
+s.listen(5)                                                        # length of queue for connections waiting to be accept()-ed
+print 'My PID is: ' + str(os.getpid())                             # whoami for debugging purposes
 
-while True:                                                        # loop for "always listenineg"
-    connection, address = serversocket.accept()
-    readbuf = connection.recv(255)                                 # reads up to 255 characters of data
-
-    while len(readbuf) > 0:
-
-        # input data processing block
-        print readbuf
+def client_thread(connection):
+    while True:
+        readbuf = connection.recv(255)                             # reads up to 255 characters of data
         connection.send('Rcvd ' + str(len(readbuf)) + ' bytes')    # sending a response
-        if readbuf == 'exit':                                      # eventually exiting when asked to
-	        break
-        else:
-            readbuf = connection.recv(255)                         # reads up to 255 characters of data
+        print readbuf
+        if 'end' in readbuf: break
+    connection.close()
 
-    if readbuf == 'exit':                                          # eventually exiting when asked to
-        connection.close()
-        break
+while True:                                                        # loop for listening
+    connection, address = s.accept()
+    thread.start_new_thread(client_thread,(connection,))
+
+s.shutdown(socket.SHUT_RDWR)
+s.close()
+print 'Bye bye.'
 
