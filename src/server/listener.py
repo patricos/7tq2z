@@ -14,6 +14,7 @@
 import socket
 import thread
 import os       # os.getpid()
+import time
 
 serveripaddr = 'localhost'                                        # = socket.gethostname()
 serveripport = 8088
@@ -25,10 +26,14 @@ print 'My PID is: ' + str(os.getpid())                             # whoami for 
 
 def client_thread(connection):
     while True:
-        readbuf = connection.recv(255)                             # reads up to 255 characters of data
-        connection.send('Rcvd ' + str(len(readbuf)) + ' bytes')    # sending a response
+        tic = time.time()
+        readbuf = connection.recv(1024)                            # reads up to a specified number of bytes of data
         print readbuf
-        if 'end' in readbuf: break
+
+        connection.send('Rcvd ' + str(len(readbuf)) + ' bytes')    # sending a response
+#        print readbuf + ' and I needed ' + str (time.time()-tic) + ' seconds.'
+#        if 'end' in readbuf: break
+        if not('continue' in readbuf): break
     connection.close()
 
 while True:                                                        # loop for listening

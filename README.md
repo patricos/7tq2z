@@ -12,6 +12,13 @@ I consider README.md my notebook that documents the process of solving the assig
 
 So below you will find my notes along with what is normally considered "publishable information" about the end-product.
 
+## Caveats
+
+This is a little bit of quick'n'dirty solution to an existing engineering challenge.  There are therefore a few "dirty" spots that were left behind for the sake of "quckness".
+
+1. In client.rb - in its socket transmission block - performance penalty due to the organization of the connection setup.
+2. In server.py - security risk - not a good practice to call a shell process with parameters made of an unsanitized input string.
+
 # System design
 
 ## Language analysis
