@@ -11,13 +11,15 @@
 # todo: receives results from worker
 # OKAY: sends results back
 
-import socket
-import thread
-import os       # os.getpid()
-import time
+import socket       # s.socket, s.bind, s.listen, s.send, s.recv
+import thread       # thread.start_new_thread()
+import os           # os.getpid()
+import time         # time.time()
+import subprocess   # subprocess.Popen(), process.communicate()
 
-serveripaddr = 'localhost'                                        # = socket.gethostname()
+serveripaddr = 'localhost'                                         # = socket.gethostname()
 serveripport = 8088
+workerfulpat = '../worker/rpnworker'
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)              # creates socket object of AF_INET family and SOCK_STREAM type
 s.bind((serveripaddr, serveripport))                               # configs the socket for a particular srv socket (address:port)
@@ -28,9 +30,16 @@ def client_thread(connection):
     while True:
         tic = time.time()
         readbuf = connection.recv(1024)                            # reads up to a specified number of bytes of data
-        print readbuf
+#        print readbuf
 
-        connection.send('Rcvd ' + str(len(readbuf)) + ' bytes')    # sending a response
+        workercommand = workerfulpat + ' ' + readbuf
+
+        process = subprocess.Popen(workercommand.split(), stdout=subprocess.PIPE)
+        output, error = process.communicate()
+
+        print output + ' LISTENER'
+
+        connection.send('Rcvd ' + str(len(readbuf)) + ' bytes ' + output + str(error))    # sending a response
 #        print readbuf + ' and I needed ' + str (time.time()-tic) + ' seconds.'
 #        if 'end' in readbuf: break
         if not('continue' in readbuf): break
