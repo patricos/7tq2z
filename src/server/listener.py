@@ -30,19 +30,14 @@ def client_thread(connection):
     while True:
         tic = time.time()
         readbuf = connection.recv(1024)                            # reads up to a specified number of bytes of data
-#        print readbuf
 
         workercommand = workerfulpat + ' ' + readbuf
-
         process = subprocess.Popen(workercommand.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
 
-        print output + ' LISTENER'
-
-        connection.send('Rcvd ' + str(len(readbuf)) + ' bytes ' + output + str(error))    # sending a response
-#        print readbuf + ' and I needed ' + str (time.time()-tic) + ' seconds.'
-#        if 'end' in readbuf: break
-        if not('continue' in readbuf): break
+        if not error is None: output = output + ' error:' + str(error)   # passing error code
+        connection.send(output)                                    # sending a response to client
+        if not('continue' in readbuf): break                       # future feature; all rpn-s 2 B processed w/one socket reservation
     connection.close()
 
 while True:                                                        # loop for listening

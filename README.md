@@ -14,11 +14,11 @@ So below you will find my notes along with what is normally considered "publisha
 
 ## Caveats
 
-This is a solution to an engineering challenge, the solution which is by request a little bit quick'n'dirty-b .  There are therefore a few "dirty" spots that were left behind for the sake of "quckness".
+This is a solution to a flash engineering challenge, the solution which is by a request a little bit quick'n'dirty-but-workin'.  There are therefore a few "dirty" spots that were left behind for the sake of "quckness", while still sticking to the specification.  Please note:
 
 1. In client.rb - in its socket transmission block - performance penalty due to the organization of the connection setup.
 2. In server.py - security risk - not a good practice to call a shell process with parameters made of an unsanitized input string.
-3. In worker.go - not exception-resistant - errornous RPN expression will return a non-num result, and division by zero will crash all.
+3. In worker.go - not exception-resistant - errornous RPN expression will return a non-num result, and so will division by zero.
 
 # System design
 

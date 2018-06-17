@@ -3,6 +3,7 @@
 #
 
 require 'socket'
+require 'time'
 
 def number_or_zero(string)
   Integer(string || '')
@@ -23,11 +24,13 @@ for i in 1..n do
     rpnlist.push  gets
 end
 
-# Now sending the expressions to the resolver-server
+# Now sending the expressions to the resolver-server + outputting them
 for rpn in rpnlist do
+    tic = Time.now
     s = TCPSocket.new(serveripaddr, serveripport)
     s.print  rpn
-	puts s.read
+    tictoc = (Time.now - tic) * 1000.0
+	puts s.read + ", " + tictoc.round(3).to_s
     s.close
 end
 
