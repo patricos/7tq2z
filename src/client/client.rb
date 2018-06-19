@@ -30,7 +30,7 @@ for rpn in rpnlist do
     s = TCPSocket.new(serveripaddr, serveripport)
     s.print  rpn
     tictoc = (Time.now - tic) * 1000.0
-	puts s.read + ", " + tictoc.round(3).to_s
+    puts s.read + ", " + tictoc.round(3).to_s
     s.close
 end
 

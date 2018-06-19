@@ -16,7 +16,7 @@ So below you will find my notes along with what is normally considered "publisha
 
 Platform is: Ubuntu 14.04 LTE.  Firstly install: `python` (version 2.7.6 was used/tested), `gccgo-go` (4.9.3), `ruby` (1.9.3p484)
 
-You need the repository.  Go to the location you want the repo to sit and run: `git init && git pull https://github.com/patricos/7tq2z`.  From now on the absolute path of reference in this document is the direcotry of this repository.
+You need the repository.  Go to the location you want the repo to sit and run: `git clone  https://github.com/patricos/7tq2z`.  From now on the absolute path of reference in this document is the direcotry of this repository.
 
 One program needs compiling: `cd src/worker && go build rpnworker.go`
 

@@ -6,7 +6,7 @@
 # OKAY: properly shut the socket disused
 # OKAY: parses input
 # OKAY: registers timings
-# todo: logs timings and necessary things
+# OKAY: logs timings and necessary things
 # OKAY: spawns workers
 # OKAY: receives results from worker
 # OKAY: sends results back

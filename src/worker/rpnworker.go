@@ -18,8 +18,6 @@ import (
 )
 
 func main() {
-//  args := os.Args[1:]             //arg  := os.Args[1]
-//  fmt.Print( args )               //fmt.Print( arg )
 
     var numstack []float64
     var x float64
