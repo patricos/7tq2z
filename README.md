@@ -2,13 +2,11 @@
 
 Project: Client-server system for solving Reversed Polish Notation (RPN)
 
-Assigned: May 29th (casual thinking started, with Internet browsing)
-
-Started: June 5th (office-time stated, with actual work)
+Works lasted from May 29th (casual thinking started, with Internet browsing) / June 5th (office-time stated, with actual work)
 
 # Introduction
 
-I consider README.md my notebook that documents the process of solving the assignment you gave me.  This notebook is here in this prominent place in order to guide the assessors through my work.  Normally, README.md would be stripped of from some mid-process-notes and would be focused on helping the users of the end-result - I realize that.
+I consider README.md my notebook that documents the process of creation.  This notebook here serves as a guide for anyone interested in following of this project.  Normally, README.md is stripped off from some mid-process-notes and is focused on helping end-users in getting them up to speed with the setup of the project.
 
 So below you will find my notes along with what is normally considered "publishable information" about the end-product.
 
